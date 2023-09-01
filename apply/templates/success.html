@@ -1,0 +1,64 @@
+<h1> registration successfull !! </h1>
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<section class="section">
+    {% if error %}
+    {{ error }}
+{% else %}
+    <div class="container">
+        <div class="row justify-content-centre">
+            <div class="col-md-10">
+                <div class="card">
+                     <div class="card-header">
+                        <h1 class="fw-bold"> Application Form Details </h1>
+                     </div>
+                     <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <!-- <th>REG_NO</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
+                                    <th>ADDRESS</th>
+                                    <th>DOB</th>
+                                    <th>IMAGE</th>
+                                    <th>SIGN</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for Details in Detail %}
+                                <tr style="padding: 20px;">
+                                    <td>{{ Details.id }}</td>
+                                    <td>{{ Details.name }}</td>
+                                    <td><button class="btn btn-primary">
+                                        <a href="{% url 'exportdjango' %}" style="color: black;"> Download as Excelsheet </a>
+                                    </button></td>
+                                    <td><button class="btn btn-primary">
+                                        <a href="{% url 'ResultList' %}" style="color: black;"> Download as PDF </a>
+                                    </button></td>
+                                    <!-- <td>{{ Details.reg_no }}</td>
+                                    <td>{{ Details.email }}</td>
+                                    <td>{{ Details.phone }}</td>
+                                    <td>{{ Details.address }}</td>
+                                    <td>{{ Details.dob }}</td>
+                                    <td><img src="/media/{{Details.image}}"
+                                         style="height: 50px; width: 50px;" ></td>
+                                    <td><img src="/media/{{Details.sign}}"
+                                        style="height: 50px; width: 50px;" ></td> -->
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endblock %}
+</section>
